@@ -1,0 +1,5 @@
+<div class="row" id="prayer-items">
+  <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let item of items | async">
+    <app-prayer-item-card [data]="item"></app-prayer-item-card>
+  </div>
+</div>

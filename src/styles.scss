@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+$primary: #96AEFF;
+$secondary: #4B5781;
+$tertiary: #4B5781;
+$success: #41D88C;
+$warning: #FFC543;
+$danger: #f15a55;
+
+$tertiary: (
+  "tertiary": #4B5781
+);
+
+@import '~bootstrap/scss/bootstrap';
+@import url("https://use.typekit.net/jaz6nbk.css");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+$theme-colors: map-merge($theme-colors, $tertiary);
+body {
+  font-family: proxima-nova !important;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+}
+.btn-primary, .btn-secondary, .btn-primary:hover, .btn-secondary:hover, .btn-outline-primary:hover {
+  color: #fff;
+}
+
+.btn-white {
+  background: white;
+}

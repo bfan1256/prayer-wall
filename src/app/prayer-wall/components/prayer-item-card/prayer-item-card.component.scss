@@ -1,0 +1,74 @@
+.card {
+  border: none;
+  border-radius: 10px;
+
+
+  .card-header {
+    background: none;
+    border: none;
+  }
+
+  .card-body {
+    font-size: 1.1rem;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 0 0 10px 10px;
+    background: white;
+    .new-profiles {
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .profile {
+        width: 25px;
+        height: 25px;
+        margin-left: -7.5px;
+        object-fit: cover;
+        border: 2px solid white;
+        border-radius: 100%;
+      }
+    }
+  }
+
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  p {
+    font-weight: bold;
+  }
+  .profile {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+}
+
+.modal-body {
+  overflow-x: hidden;
+}
+
+.prayer-item-text {
+  font-size: 1.2rem;
+}
+
+.modal-content {
+  overflow-x: hidden;
+  background: white;
+}
+
+.responses {
+  margin: 0 -2em;
+  padding: 3.5em;
+  background:rgb(248, 248, 248);
+  .response-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "prayer-walls": {
+      "hosting": {
+        "prayer-wall": [
+          "prayer-walls"
+        ]
+      }
+    }
+  }
+}

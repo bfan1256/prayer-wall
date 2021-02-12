@@ -1,0 +1,55 @@
+<div class="container mb-5">
+  <div class="top text-center mb-4">
+    <div class="bg-img">
+      <img src="/assets/images/bg.jpg" alt="">
+    </div>
+    <div class="top-img">
+      <img class="img-profile" src="https://source.unsplash.com/random" alt="">
+    </div>
+    <h1 class="text-secondary">Harvest Mission Community Church</h1>
+    <p>We are the harvest mission community church and we are trying to help reach out to all Christians</p>
+    <div class="actions mt-4">
+      <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#newPrayerItemModal">Add a new prayer item <i class="ms-2 fas fa-plus"></i></button>
+      <button class="btn btn-outline-secondary">Follow for Updates 🙏 </button>
+    </div>
+    <div class="profiles">
+      <img class="profile" src="https://source.unsplash.com/random" alt="">
+      <img class="profile" src="https://source.unsplash.com/random" alt="">
+      <img class="profile" src="https://source.unsplash.com/random" alt="">
+    </div>
+    <p class="mt-2">35+ Members, 128 Total Prayers</p>
+  </div>
+</div>
+<div class="background">
+  <div class="container">
+    <app-prayer-items-container></app-prayer-items-container>
+  </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newPrayerItemModal" tabindex="-1" aria-labelledby="New Prayer Item Modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a new prayer item</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form name="New Prayer Item">
+          <select [(ngModel)]="newItem.type" name="share-preference" class="form-select mb-3" placeholder="Share Preference">
+            <option value="anonymous" selected>Share anonymously</option>
+          </select>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Your Prayer Request</label>
+            <textarea [(ngModel)]="newItem.text" name="request" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button (click)="addPrayerItem()" type="button" class="btn btn-primary">Post Prayer Item</button>
+      </div>
+    </div>
+  </div>
+</div>
