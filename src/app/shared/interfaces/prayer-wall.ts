@@ -4,6 +4,8 @@ export interface PrayerWall {
   numMembers: number;
   numPrayers: number;
   title: string;
+  id: string;
+  description: string;
   profileUrl: string;
   backgroundUrl: string;
   timestamp: TimestampObj;

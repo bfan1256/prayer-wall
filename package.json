@@ -23,6 +23,7 @@
     "@thisissoon/angular-masonry": "^1.2.0",
     "bootstrap": "^5.0.0-beta2",
     "firebase": "^7.0 || ^8.0",
+    "jquery": "^3.5.1",
     "masonry-layout": "^4.2.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

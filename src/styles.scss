@@ -23,7 +23,7 @@ body {
 h1, h2, h3, h4, h5 {
   font-weight: bold;
 }
-.btn-primary, .btn-secondary, .btn-primary:hover, .btn-secondary:hover, .btn-outline-primary:hover {
+.btn-primary, .btn-secondary, .btn-primary:hover, .btn-primary:focus, .btn-secondary:hover, .btn-secondary:focus, .btn-outline-primary:hover {
   color: #fff;
 }
 

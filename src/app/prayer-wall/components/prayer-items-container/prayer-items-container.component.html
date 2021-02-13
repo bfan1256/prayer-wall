@@ -1,5 +1,8 @@
 <div class="row" id="prayer-items">
-  <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let item of items | async">
-    <app-prayer-item-card [data]="item"></app-prayer-item-card>
+  <div class="actions text-center" *ngIf="items.length === 0">
+    <h5>Looks like there are no prayer requests at this moment, use the button above to create one</h5>
+  </div>
+  <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let item of items">
+    <app-prayer-item-card [churchId]="churchId" [data]="item"></app-prayer-item-card>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { PrayerItem } from './interfaces/prayer-item';
+import { PrayerItem } from '../../interfaces/prayer-item';
 export const tempData: PrayerItem[] = [
   {
     text: `It was difficult for him to admit he was wrong. He had been so certain that he was correct and the deeply held belief could never be shaken.

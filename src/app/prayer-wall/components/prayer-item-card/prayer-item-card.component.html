@@ -1,8 +1,10 @@
 <div class="card">
   <div class="card-header pt-4 px-4">
     <div class="user">
-      <img class="profile" src="https://source.unsplash.com/random" alt="">
-      <p class="ms-2 mb-0 text-bold">Brandon Fan</p>
+      <img class="profile" *ngIf="data.type === 'user'" src="https://source.unsplash.com/random" alt="">
+      <img class="profile" *ngIf="data.type === 'anonymous'" src="/assets/images/default-profile.png" alt="">
+      <p *ngIf="data.type === 'user'" class="ms-2 mb-0 text-bold">Brandon Fan</p>
+      <p *ngIf="data.type === 'anonymous'" class="ms-2 mb-0 text-bold">Anonymous User</p>
     </div>
   </div>
   <div class="card-body px-4 pb-4">
@@ -15,11 +17,11 @@
     <div class="new-profiles">
       <img class="profile" *ngFor="let profile of data.prayedIds.slice(1, 6)" src="https://source.unsplash.com/random" alt="">
     </div>
-    <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#responseModal">View Responses 🙏</button>
+    <button [attr.data-bs-target]="'#responseModal' + data.prayerId" data-bs-toggle="modal" class="btn btn-outline-secondary">View Responses 🙏</button>
   </div>
 </div>
 
-<div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModal" aria-hidden="true">
+<div class="modal fade" [id]="'responseModal' + data.prayerId" tabindex="-1" aria-labelledby="responseModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -32,45 +34,22 @@
         <div class="responses mt-5">
           <div class="response-top mb-3">
             <h5>Prayer Responses</h5>
-            <button data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" class="btn btn-primary">Write a Response <i class="ms-2 fas fa-plus"></i></button>
+            <button data-bs-toggle="collapse" href="#prayerResponse" role="button" class="btn btn-primary">Write a Response <i class="ms-2 fas fa-plus"></i></button>
           </div>
-          <div class="collapse multi-collapse mb-5" id="multiCollapseExample1">
+          <div class="collapse multi-collapse mb-5" id="prayerResponse">
             <form action="">
+              <select [(ngModel)]="newResponse.type" name="share-preference" class="form-select mb-3" placeholder="Share Preference">
+                <option value="anonymous" selected>Share anonymously</option>
+              </select>
               <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Your Prayer Response</label>
-                <textarea placeholder="Your awesome prayer response" class="form-control" id="prayer-response" rows="3"></textarea>
+                <label for="prayer-response-textarea" class="form-label">Your Prayer Response</label>
+                <textarea [(ngModel)]="newResponse.text" placeholder="Your awesome prayer response" name="response" class="form-control" id="prayer-response" rows="3"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary mb-3">Submit Prayer Response</button>
+              <button data-bs-toggle="collapse" (click)="addResponse()" href="#prayerResponse" type="submit" class="btn btn-primary mb-3">Submit Prayer Response</button>
             </form>
             <hr>
           </div>
-          <div class="response-card card mb-3">
-            <div class="card-body">
-              <div class="user">
-                <img class="profile" src="https://source.unsplash.com/random" alt="">
-                <p class="ms-2 mb-0 text-bold">Brandon Fan</p>
-              </div>
-              <p class="mt-2">Brandon, I'm praying that God will continue to grow with you and that you will cultivate and grow with a sense of peace in your heart</p>
-            </div>
-          </div>
-          <div class="response-card card mb-3">
-            <div class="card-body">
-              <div class="user">
-                <img class="profile" src="https://source.unsplash.com/random" alt="">
-                <p class="ms-2 mb-0 text-bold">Brandon Fan</p>
-              </div>
-              <p class="mt-2">Brandon, I'm praying that God will continue to grow with you and that you will cultivate and grow with a sense of peace in your heart</p>
-            </div>
-          </div>
-          <div class="response-card card mb-3">
-            <div class="card-body">
-              <div class="user">
-                <img class="profile" src="https://source.unsplash.com/random" alt="">
-                <p class="ms-2 mb-0 text-bold">Brandon Fan</p>
-              </div>
-              <p class="mt-2">Brandon, I'm praying that God will continue to grow with you and that you will cultivate and grow with a sense of peace in your heart</p>
-            </div>
-          </div>
+          <app-response-card [data]="response" *ngFor="let response of responses"></app-response-card>
         </div>
       </div>
       <div class="modal-footer">

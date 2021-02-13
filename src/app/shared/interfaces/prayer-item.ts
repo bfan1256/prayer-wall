@@ -9,9 +9,10 @@ export interface PrayerItem {
   prayedIds: string[];
 }
 
-export interface Response {
+export interface PrayerResponse {
   uid?: string;
   text: string;
+  type: string;
   itemId: string;
   responseId: string;
 }
