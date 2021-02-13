@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { PrayerItemsService } from './services/prayer-items/prayer-items.service';
 import { WallService } from './services/wall/wall.service';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   declarations: [NavbarComponent],
   imports: [
     CommonModule,
+    RouterModule,
   ],
   providers: [ WallService, PrayerItemsService ],
   exports: [NavbarComponent]

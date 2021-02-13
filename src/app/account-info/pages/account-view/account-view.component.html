@@ -1,0 +1,112 @@
+
+<!-- HEADER -->
+<header class="bg-primary pt-5 pb-11 d-none d-md-block">
+  <div class="container-md">
+    <div class="row align-items-center">
+      <h1 class="fw-bold text-white mb-2 pb-4">
+        Your Account Settings
+      </h1>
+    </div> <!-- / .row -->
+  </div> <!-- / .container -->
+</header>
+
+<!-- MAIN -->
+<main class="pt-5 pb-5">
+  <div class="container">
+    <h3 class="mb-3 text-secondary">Account Info</h3>
+    <div class="profile-edit">
+      <img class="profile-img" src="https://source.unsplash.com/random" alt="">
+      <button class="btn btn-secondary mt-3">Edit Profile Image</button>
+    </div>
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="first-name" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="first-name">
+      </div>
+      <div class="col-md-6">
+        <label for="last-name" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="last-name">
+      </div>
+      <div class="col-md-12">
+        <label for="bio" class="form-label">Bio</label>
+        <textarea name="bio" placeholder="Describe yourself here" id="bio" rows="5" class="form-control"></textarea>
+      </div>
+    </form>
+
+    <!-- Card -->
+    <div class="card card-bleed shadow-light-lg mt-5 mb-8">
+      <div class="card-header">
+
+        <!-- Title -->
+        <h4 class="p-2 mb-0 text-secondary">
+          Privacy
+        </h4>
+
+      </div>
+      <div class="card-body">
+
+        <!-- List group -->
+        <div class="list-group list-group-flush">
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Heading -->
+                <p class="mb-0">
+                  Public Profile
+                </p>
+
+                <!-- Text -->
+                <small class="text-gray-700">
+                  Making your profile public means anyone can see your information.
+                </small>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Switch -->
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="switchOne" checked>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="list-group-item">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Heading -->
+                <p class="mb-0">
+                  Get email notifications
+                </p>
+
+                <!-- Text -->
+                <small class="text-gray-700">
+                  This lets you get email notifications for all the prayer walls you follow
+                </small>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Switch -->
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="switchTwo" checked>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Text -->
+    <p class="text-center mb-0 mt-3">
+      <small class="text-muted">If you no longer want your account, you can <a class="text-danger" href="#!">delete your account</a>.</small>
+    </p>
+
+
+  </div> <!-- / .container -->
+</main>

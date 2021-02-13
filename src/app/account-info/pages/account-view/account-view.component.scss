@@ -1,0 +1,17 @@
+.container {
+  max-width: 750px;
+}
+
+.profile-img {
+  width: 125px;
+  height: 125px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.profile-edit {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

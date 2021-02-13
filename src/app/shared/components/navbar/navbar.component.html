@@ -1,13 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container">
-    <a class="navbar-brand" href="#">Prayer Walls</a>
+  <div class="container pb-3">
+    <a clsas="navbar-brand me-5" href="#">
+      <img src="/assets/images/logo.png" alt="" width="125">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
+    <div class="collapse navbar-collapse ms-5" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Create A Wall</a>
@@ -16,9 +18,9 @@
           <a class="nav-link" href="#">Explore</a>
         </li>
       </ul>
-      <div class="user">
+      <a class="user" [routerLink]="'/account/info'">
         <img src="https://source.unsplash.com/random" alt="">
-      </div>
+      </a>
     </div>
   </div>
 </nav>
