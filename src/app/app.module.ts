@@ -12,6 +12,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { TagInputModule } from 'ngx-chips';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMasonryModule } from 'ngx-masonry';
+
+
 @NgModule({
   declarations: [
     AppComponent,

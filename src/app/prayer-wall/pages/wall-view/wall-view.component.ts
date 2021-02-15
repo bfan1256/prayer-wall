@@ -69,6 +69,7 @@ export class WallViewComponent implements OnInit {
       }),
       tap((res) => {
         this.members = res;
+        this.profiles = [];
       }),
       switchMap((res: any) => {
         const profiles = res.map(member => member.uid);

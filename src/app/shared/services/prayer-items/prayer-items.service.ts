@@ -13,7 +13,7 @@ export class PrayerItemsService {
 
   getItemsById(churchId: string): Observable<PrayerItem[]> {
     return this.afs.collection('walls').doc(churchId)
-      .collection<PrayerItem>('requests', ref => ref.orderBy('createdAt'))
+      .collection<PrayerItem>('requests', ref => ref.orderBy('createdAt', 'desc'))
       .valueChanges();
   }
 

@@ -1,3 +1,4 @@
+import { NgxMasonryModule } from 'ngx-masonry';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TagInputModule } from 'ngx-chips';
 import { SharedModule } from './../shared/shared.module';
@@ -20,7 +21,8 @@ import { ResponseCardComponent } from './components/response-card/response-card.
     TagInputModule,
     ReactiveFormsModule,
     SharedModule,
-    PrayerWallRoutingModule
+    PrayerWallRoutingModule,
+    NgxMasonryModule
   ]
 })
 export class PrayerWallModule { }
