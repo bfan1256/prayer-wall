@@ -23,7 +23,7 @@
           <button data-bs-toggle="modal" data-bs-target="#signUpModal" class="btn btn-primary me-3">Sign Up</button>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+          <a class="nav-link login" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
         </li>
       </ul>
       <a *ngIf="loggedIn" class="user" [routerLink]="'/account/info'">
@@ -71,7 +71,7 @@
     </div>
   </div>
 </div>
-<div class="fade modal" id="signUpModal" tabindex="-1" aria-labelledby="Sign Up Modal" aria-hidden="true">
+<div class="fade modal" id="loginModal" tabindex="-1" aria-labelledby="Login Modal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

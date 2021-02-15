@@ -17,14 +17,12 @@
     <h1 class="text-secondary">{{ wallData?.title }}</h1>
     <p>{{ wallData?.description }}</p>
     <div class="actions mt-4">
-      <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#newPrayerItemModal">Add a new prayer item <i class="ms-2 fas fa-plus"></i></button>
+      <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#newPrayerItemModal">Add to the prayer wall <i class="ms-2 fas fa-plus"></i></button>
       <button class="btn btn-outline-secondary" *ngIf="checkMembership()" (click)="addMember()">Follow for Updates 🙏 </button>
       <button class="btn btn-outline-danger" *ngIf="!checkMembership()" (click)="unfollow()">Unfollow this Prayer Wall</button>
     </div>
     <div class="profiles">
-      <img class="profile" src="https://source.unsplash.com/random" alt="">
-      <img class="profile" src="https://source.unsplash.com/random" alt="">
-      <img class="profile" src="https://source.unsplash.com/random" alt="">
+      <img class="profile" [src]="profile" *ngFor="let profile of profiles" alt="">
     </div>
     <p class="mt-2">{{ wallData?.numMembers }} Members, {{ wallData?.numPrayers }} Total Prayers</p>
   </div>
@@ -41,7 +39,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add a new prayer item</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add a new prayer</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -50,15 +48,24 @@
             <option value="public" *ngIf="loggedIn">Share with Publically</option>
             <option value="anonymous">Share anonymously</option>
           </select>
+          <select [(ngModel)]="newItem.prayerType" name="prayer-type" class="form-select mb-3" placeholder="Share Preference">
+            <option value="request">Prayer Request</option>
+            <option value="prayer">A Prayer</option>
+            <option value="verse">Verse/Passage</option>
+          </select>
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Your Prayer Request</label>
+            <label for="exampleFormControlTextarea1" class="form-label">Your {{ newItem.prayerType }}</label>
             <textarea [(ngModel)]="newItem.text" name="request" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+          </div>
+          <div>
+            <label for="tags" class="form-label">Tags (Separated by Commas)</label>
+            <input type="text" [(ngModel)]="tagString" class="form-control" name="tags" id="tags">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button (click)="addPrayerItem()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Post Prayer Item</button>
+        <button (click)="addPrayerItem()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Post to Wall</button>
       </div>
     </div>
   </div>

@@ -10,6 +10,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { TagInputModule } from 'ngx-chips';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +20,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    TagInputModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'Prayer Walls'),
     AngularFirestoreModule,
     AngularFireAnalyticsModule,

@@ -4,6 +4,7 @@ export interface PrayerItem {
   numResponses: number;
   prayerId: string;
   type: string;
+  prayerType: string;
   numViews: number;
   tags: string[];
   createdAt: any;

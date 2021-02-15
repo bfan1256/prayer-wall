@@ -4,8 +4,8 @@ import { PrayerWall } from './../../shared/interfaces/prayer-wall';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { finalize, first, take, tap } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { finalize, first, mergeMap, pluck, take, tap } from 'rxjs/operators';
 import firebase from 'firebase/app';
 
 @Component({
@@ -41,7 +41,7 @@ export class CreateWallViewComponent implements OnInit {
   ngOnInit(): void {
     this.user.uid.subscribe((res) => {
       this.uid = res;
-    })
+    });
   }
 
   getBackgroundImage(url: string) {
@@ -57,6 +57,8 @@ export class CreateWallViewComponent implements OnInit {
     }
     return '/assets/images/default-profile.png';
   }
+
+  // UPLOAD FUNCTIONS
 
   startUploadProfile(fileInput: any) {
     console.log(fileInput.target.files[0]);

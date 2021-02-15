@@ -1,3 +1,4 @@
+import { UtilitiesService } from './../../../shared/services/utilities/utilities.service';
 import { UserService } from './../../../shared/services/user/user.service';
 import { PrayerWall } from './../../../shared/interfaces/prayer-wall';
 import { WallService } from './../../../shared/services/wall/wall.service';
@@ -5,9 +6,10 @@ import { PrayerItemsService } from './../../../shared/services/prayer-items/pray
 import { PrayerItem } from 'src/app/shared/interfaces/prayer-item';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { pluck, shareReplay, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { mergeMap, pluck, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
 import firebase from 'firebase/app';
+import { Title } from '@angular/platform-browser';
 
 declare const $: any;
 @Component({
@@ -22,10 +24,14 @@ export class WallViewComponent implements OnInit {
   currentUid: string;
   loggedIn = false;
   justAdded = false;
+  tagString = '';
   justRemoved = false;
   members: any[] = [];
+  profiles: string[] = [];
   constructor(private itemService: PrayerItemsService,
               private wall: WallService,
+              private title: Title,
+              private utilities: UtilitiesService,
               private user: UserService,
               private route: ActivatedRoute) { }
 
@@ -45,21 +51,32 @@ export class WallViewComponent implements OnInit {
 
     this.id.pipe(
       switchMap((id) => {
-        console.log(id);
         return this.wall.getWallData(id);
+      }),
+      tap((res) => {
+        this.wallData = res;
+        this.title.setTitle(this.wallData.title);
       })
-    ).subscribe((res) => {
-      console.log(res);
-      this.wallData = res;
-    });
+    ).subscribe();
 
     this.id.pipe(
+      tap(() => {
+        this.members = [];
+        this.profiles = [];
+      }),
       switchMap((id) => {
         return this.wall.getMembers(id);
+      }),
+      tap((res) => {
+        this.members = res;
+      }),
+      switchMap((res: any) => {
+        const profiles = res.map(member => member.uid);
+        return this.getProfiles(profiles);
       })
     ).subscribe((res) => {
-      console.log(res);
-      this.members = res;
+      this.profiles.push(this.getProfileImage(res));
+      console.log(this.profiles);
     });
 
     this.newItem = this.setDefaultNewItem();
@@ -72,6 +89,7 @@ export class WallViewComponent implements OnInit {
       numViews: 0,
       prayerId: '',
       type: 'anonymous',
+      prayerType: 'request',
       tags: [],
       prayedIds: [],
       createdAt: null,
@@ -83,8 +101,24 @@ export class WallViewComponent implements OnInit {
     return data;
   }
 
+  getProfiles(profiles: string[]) {
+    let arr = profiles;
+    if (profiles.length > 5) {
+      arr = this.utilities.shuffle(profiles).slice(0, 5);
+    }
+    return from(arr).pipe(
+      mergeMap((id: string) => {
+        return this.user.getUser(id);
+      }),
+      pluck('profileUrl')
+    );
+  }
+
   async addPrayerItem() {
     if (this.newItem.text.trim().length > 0) {
+      this.newItem.tags = this.tagString.split(',').map((res) => {
+        return res.trim();
+      });
       this.newItem.createdAt = firebase.firestore.FieldValue.serverTimestamp();
       this.newItem.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
       if (this.newItem.type === 'public') {

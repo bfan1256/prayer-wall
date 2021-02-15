@@ -2,7 +2,7 @@ import { PrayerResponse } from './../../interfaces/prayer-item';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { PrayerItem } from '../../interfaces/prayer-item';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import firebase from 'firebase/app';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class PrayerItemsService {
   constructor(private afs: AngularFirestore) { }
 
   getItemsById(churchId: string): Observable<PrayerItem[]> {
-    console.log(`Getting Items for Associated Church ID: ${churchId}`);
-    return this.afs.collection('walls').doc(churchId).collection<PrayerItem>('requests')
+    return this.afs.collection('walls').doc(churchId)
+      .collection<PrayerItem>('requests', ref => ref.orderBy('createdAt'))
       .valueChanges();
   }
 

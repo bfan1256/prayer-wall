@@ -49,12 +49,17 @@
   }
 }
 
+.card-text {
+  white-space: pre-wrap;
+}
+
 .modal-body {
   overflow-x: hidden;
 }
 
 .prayer-item-text {
   font-size: 1.2rem;
+  white-space: pre-wrap;
 }
 
 .modal-content {

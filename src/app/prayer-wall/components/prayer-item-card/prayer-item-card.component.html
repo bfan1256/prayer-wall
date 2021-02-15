@@ -8,9 +8,10 @@
     </div>
   </div>
   <div class="card-body px-4 pb-4">
-    <p>{{ data.text }}</p>
+    <p class="card-text">{{ data.text }}</p>
     <div class="tags">
-      <span *ngFor="let tag of data.tags" class="badge rounded-pill bg-primary me-1">Primary</span>
+      <span class="badge rounded-pill bg-primary me-1">{{ capitalize(data.prayerType) }}</span>
+      <span *ngFor="let tag of data.tags" class="badge rounded-pill bg-secondary me-1">{{ tag }}</span>
     </div>
   </div>
   <div class="card-footer p-3">

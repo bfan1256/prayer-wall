@@ -1,3 +1,4 @@
+import { UtilitiesService } from './../../../shared/services/utilities/utilities.service';
 import { AppUser } from './../../../shared/interfaces/user';
 import { UserService } from './../../../shared/services/user/user.service';
 import { PrayerItemsService } from './../../../shared/services/prayer-items/prayer-items.service';
@@ -15,7 +16,9 @@ export class PrayerItemCardComponent implements OnInit {
   newResponse: PrayerResponse;
   responses: PrayerResponse[] = [];
   userData: AppUser;
-  constructor(private backend: PrayerItemsService, private user: UserService) { }
+  constructor(private backend: PrayerItemsService,
+              private utilities: UtilitiesService,
+              private user: UserService) { }
 
   ngOnInit(): void {
     this.user.getUser(this.data.uid)
@@ -53,6 +56,10 @@ export class PrayerItemCardComponent implements OnInit {
       return url;
     }
     return '/assets/images/default-profile.png';
+  }
+
+  capitalize(phrase: string) {
+    return this.utilities.capitalize(phrase);
   }
 
 }
