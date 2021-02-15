@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,6 +10,7 @@ import { AccountViewComponent } from './pages/account-view/account-view.componen
   declarations: [AccountViewComponent],
   imports: [
     CommonModule,
+    FormsModule,
     AccountInfoRoutingModule
   ]
 })

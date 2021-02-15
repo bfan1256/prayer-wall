@@ -6,6 +6,8 @@ export interface PrayerItem {
   type: string;
   numViews: number;
   tags: string[];
+  createdAt: any;
+  updatedAt: any;
   prayedIds: string[];
 }
 

@@ -1,9 +1,9 @@
 import { PrayerResponse } from './../../interfaces/prayer-item';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { tempData } from './data';
 import { Injectable } from '@angular/core';
 import { PrayerItem } from '../../interfaces/prayer-item';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,13 @@ export class PrayerItemsService {
       .valueChanges();
   }
 
-  addItem(churchId: string, item: PrayerItem) {
+  async addItem(churchId: string, item: PrayerItem) {
     item.prayerId = this.afs.createId();
+    await this.afs.doc(`walls/${churchId}`).update(
+      {
+        numPrayers: firebase.firestore.FieldValue.increment(1)
+      }
+    );
     return this.afs.collection(`walls/${churchId}/requests`)
       .doc(item.prayerId).set(item);
   }

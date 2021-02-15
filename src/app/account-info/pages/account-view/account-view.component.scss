@@ -2,6 +2,13 @@
   max-width: 750px;
 }
 
+.logout {
+  text-align: right;
+  .btn {
+    color: white;
+  }
+}
+
 .profile-img {
   width: 125px;
   height: 125px;
@@ -14,4 +21,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.save-button {
+  text-align: right;
 }

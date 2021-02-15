@@ -1,9 +1,9 @@
 <div class="card">
   <div class="card-header pt-4 px-4">
     <div class="user">
-      <img class="profile" *ngIf="data.type === 'user'" src="https://source.unsplash.com/random" alt="">
+      <img class="profile" *ngIf="data.type === 'public'" [src]="getImage(userData.profileUrl)" alt="">
       <img class="profile" *ngIf="data.type === 'anonymous'" src="/assets/images/default-profile.png" alt="">
-      <p *ngIf="data.type === 'user'" class="ms-2 mb-0 text-bold">Brandon Fan</p>
+      <p *ngIf="data.type === 'public'" class="ms-2 mb-0 text-bold">{{ userData.firstName }} {{ userData.lastName }}</p>
       <p *ngIf="data.type === 'anonymous'" class="ms-2 mb-0 text-bold">Anonymous User</p>
     </div>
   </div>

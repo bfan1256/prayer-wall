@@ -10,7 +10,11 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () => import('./account-info/account-info.module').then(m => m.AccountInfoModule)
-  }
+  },
+  {
+    path: 'create-wall',
+    loadChildren: () => import('./create-wall/create-wall.module').then(m => m.CreateWallModule)
+  },
 ];
 
 @NgModule({

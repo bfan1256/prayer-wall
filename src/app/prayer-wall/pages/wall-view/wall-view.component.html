@@ -1,16 +1,25 @@
 <div *ngIf="wallData" class="container mb-5 mt-0">
+  <div id="update" *ngIf="justAdded" class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>New Follower</strong>: You just followed {{ wallData.title }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div id="update" *ngIf="justRemoved" class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong>Follower Removed</strong>: You just unfollowed {{ wallData.title }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <div class="top text-center mb-4">
     <div class="bg-img">
-      <img [src]="wallData?.backgroundUrl" alt="">
+      <img [src]="getBackgroundImage(wallData?.backgroundUrl)" alt="">
     </div>
     <div class="top-img">
-      <img class="img-profile" [src]="wallData?.profileUrl" alt="">
+      <img class="img-profile" [src]="getProfileImage(wallData?.profileUrl)" alt="">
     </div>
     <h1 class="text-secondary">{{ wallData?.title }}</h1>
     <p>{{ wallData?.description }}</p>
     <div class="actions mt-4">
       <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#newPrayerItemModal">Add a new prayer item <i class="ms-2 fas fa-plus"></i></button>
-      <button class="btn btn-outline-secondary">Follow for Updates 🙏 </button>
+      <button class="btn btn-outline-secondary" *ngIf="checkMembership()" (click)="addMember()">Follow for Updates 🙏 </button>
+      <button class="btn btn-outline-danger" *ngIf="!checkMembership()" (click)="unfollow()">Unfollow this Prayer Wall</button>
     </div>
     <div class="profiles">
       <img class="profile" src="https://source.unsplash.com/random" alt="">
@@ -38,7 +47,8 @@
       <div class="modal-body">
         <form name="New Prayer Item">
           <select [(ngModel)]="newItem.type" name="share-preference" class="form-select mb-3" placeholder="Share Preference">
-            <option value="anonymous" selected>Share anonymously</option>
+            <option value="public" *ngIf="loggedIn">Share with Publically</option>
+            <option value="anonymous">Share anonymously</option>
           </select>
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Your Prayer Request</label>

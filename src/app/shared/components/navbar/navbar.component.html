@@ -12,15 +12,91 @@
           <a class="nav-link" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Create A Wall</a>
+          <a class="nav-link" *ngIf="loggedIn" [routerLink]="'/create-wall'">Create A Wall</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Explore</a>
         </li>
       </ul>
-      <a class="user" [routerLink]="'/account/info'">
-        <img src="https://source.unsplash.com/random" alt="">
+      <ul class="navbar-nav" *ngIf="!loggedIn">
+        <li class="nav-item">
+          <button data-bs-toggle="modal" data-bs-target="#signUpModal" class="btn btn-primary me-3">Sign Up</button>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+        </li>
+      </ul>
+      <a *ngIf="loggedIn" class="user" [routerLink]="'/account/info'">
+        <img [src]="getImage(userData?.profileUrl)" alt="">
       </a>
     </div>
   </div>
 </nav>
+
+<!-- ====== Authentication ====== -->
+<!-- Modal -->
+<div class="fade modal" id="signUpModal" tabindex="-1" aria-labelledby="Sign Up Modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form name="Sign Up">
+          <div class="row mb-5">
+            <div class="col-md-6">
+              <label for="first-name-signup" class="form-label">First Name</label>
+              <input name="first-name-signup" [(ngModel)]="newUser.firstName"  type="text" autocomplete="given-name" class="form-control" id="first-name">
+            </div>
+            <div class="col-md-6">
+              <label for="last-name-signup" class="form-label">Last Name</label>
+              <input name="last-name-signup" type="text" [(ngModel)]="newUser.lastName"  autocomplete="family-name" class="form-control" id="last-name">
+            </div>
+            <div class="col-md-12 mt-3">
+              <label for="email" class="form-label">Email</label>
+              <input name="email" type="email" [(ngModel)]="newUser.email" class="form-control" id="email">
+            </div>
+            <div class="col-md-12 mt-2">
+              <label for="password" class="form-label">Password</label>
+              <input name="password" [(ngModel)]="password"  type="password" class="form-control" id="password">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button (click)="signUp()" type="button" class="btn btn-primary">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fade modal" id="signUpModal" tabindex="-1" aria-labelledby="Sign Up Modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form name="Login">
+          <div class="row mb-5">
+            <div class="col-md-12 mt-3">
+              <label for="email-login" class="form-label">Email</label>
+              <input name="email-login" autocomplete="email" [(ngModel)]="newUser.email"  type="email" class="form-control" id="email-login">
+            </div>
+            <div class="col-md-12 mt-2">
+              <label for="password-login" class="form-label">Password</label>
+              <input name="password-login" autocomplete="current-password" [(ngModel)]="password" type="password" class="form-control" id="password-login">
+            </div>
+          </div>
+          <p class="text-danger" *ngIf="errorMessage.length > 0">{{ errorMessage }}</p>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button (click)="login()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+</div>

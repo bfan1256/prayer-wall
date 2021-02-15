@@ -1,0 +1,42 @@
+<div class="container bottom">
+ <h2 class="mt-4 mb-4 text-primary">Create a New Wall</h2>
+ <div *ngIf="wallData" class="container mb-5 mt-4">
+  <div class="top text-center mb-4">
+    <div class="bg-img">
+      <img [src]="getBackgroundImage(wallData?.backgroundUrl)" alt="">
+    </div>
+    <div class="top-img">
+      <img class="img-profile" [src]="getProfileImage(wallData?.profileUrl)" alt="">
+    </div>
+    <h1 class="text-secondary">{{ wallData.title }}</h1>
+    <p>{{ wallData.description }}</p>
+    <div class="profiles">
+      <img class="profile" src="https://source.unsplash.com/random" alt="">
+      <img class="profile" src="https://source.unsplash.com/random" alt="">
+      <img class="profile" src="https://source.unsplash.com/random" alt="">
+    </div>
+    <p class="mt-2">52 Members, 25 Total Prayers</p>
+  </div>
+  </div>
+ <form class="row g-3">
+    <div class="col-md-12">
+      <label for="wall-name" class="form-label">Wall Name</label>
+      <input name="wall-name" name="wall" [(ngModel)]="wallData.title" type="text" class="form-control" id="wall-name">
+    </div>
+    <div class="col-md-12">
+      <label for="description" class="form-label">Short Description</label>
+      <input name="description" [(ngModel)]="wallData.description" type="text" class="form-control" id="wall-name">
+    </div>
+    <div class="mb-3">
+      <label for="formFile" class="form-label">Wall Profile Image</label>
+      <input class="form-control" name="profile-image" (change)="startUploadProfile($event)" type="file" id="formFile">
+    </div>
+    <div class="mb-3">
+      <label for="formFile" class="form-label">Wall Background Image</label>
+      <input class="form-control" name="background" (change)="startUploadBackground($event)" [(ngModel)]="wallData.backgroundUrl" type="file" id="formFile">
+    </div>
+  </form>
+  <div class="right">
+    <button (click)="createWall()" class="btn btn-primary">Create New Wall</button>
+  </div>
+</div>

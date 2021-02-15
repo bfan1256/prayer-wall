@@ -1,3 +1,5 @@
+import { AppUser } from './../../../shared/interfaces/user';
+import { UserService } from './../../../shared/services/user/user.service';
 import { PrayerItemsService } from './../../../shared/services/prayer-items/prayer-items.service';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { PrayerItem, PrayerResponse } from 'src/app/shared/interfaces/prayer-item';
@@ -12,9 +14,14 @@ export class PrayerItemCardComponent implements OnInit {
   @Input() churchId: string;
   newResponse: PrayerResponse;
   responses: PrayerResponse[] = [];
-  constructor(private backend: PrayerItemsService) { }
+  userData: AppUser;
+  constructor(private backend: PrayerItemsService, private user: UserService) { }
 
   ngOnInit(): void {
+    this.user.getUser(this.data.uid)
+      .subscribe((res) => {
+        this.userData = res;
+      });
     this.newResponse = this.setDefaultPrayerResponse();
     this.backend.getResponses(this.churchId, this.data.prayerId)
       .subscribe((res) => {
@@ -39,6 +46,13 @@ export class PrayerItemCardComponent implements OnInit {
       responseId: '',
       itemId: ''
     };
+  }
+
+  getImage(url: string) {
+    if (url) {
+      return url;
+    }
+    return '/assets/images/default-profile.png';
   }
 
 }

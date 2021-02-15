@@ -13,7 +13,7 @@ export interface PrayerWall {
 }
 
 export interface TimestampObj {
-  createdAt: firebase.firestore.Timestamp;
-  updatedAt: firebase.firestore.Timestamp;
+  createdAt: any;
+  updatedAt: any;
 }
 
