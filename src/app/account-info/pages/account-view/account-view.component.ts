@@ -47,6 +47,13 @@ export class AccountViewComponent implements OnInit {
     ).subscribe((res) => {
       if (res) {
         this.userData = res;
+        if (!this.userData.privacy) {
+          this.userData.privacy = {
+            isPublic: false,
+            getEmail: true
+          };
+          this.user.updateUser(this.userData.uid, this.userData);
+        }
       }
     });
   }

@@ -19,6 +19,11 @@ $theme-colors: map-merge($theme-colors, $tertiary);
 body {
   font-family: proxima-nova !important;
 }
+router-outlet ~ * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
 
 h1, h2, h3, h4, h5 {
   font-weight: bold;
