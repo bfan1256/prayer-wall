@@ -14,12 +14,12 @@
       <span *ngFor="let tag of data.tags" class="badge rounded-pill bg-secondary me-1">{{ tag }}</span>
     </div>
   </div>
-  <div class="card-footer p-3">
+  <!-- <div class="card-footer p-3">
     <div class="new-profiles">
       <img class="profile" *ngFor="let profile of data.prayedIds.slice(1, 6)" src="https://source.unsplash.com/random" alt="">
     </div>
     <button [attr.data-bs-target]="'#responseModal' + data.prayerId" data-bs-toggle="modal" class="btn btn-outline-secondary">View Responses 🙏</button>
-  </div>
+  </div> -->
 </div>
 
 <div class="modal fade" [id]="'responseModal' + data.prayerId" tabindex="-1" aria-labelledby="responseModal" aria-hidden="true">
