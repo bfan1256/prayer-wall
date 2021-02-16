@@ -1,15 +1,5 @@
-.salmon {
-  background: #ffc5ae;
-  color: #000;
-}
-
-.coral {
-  background: #ffc8c8;
-  color: #000;
-}
-
 .card {
-  border: none;
+  border: 1px solid lightgrey;
   border-radius: 10px;
 
 
@@ -19,7 +9,7 @@
   }
 
   .card-body {
-    font-size: 1.2rem;
+    font-size: 1.13rem;
     .card-text {
       font-family: 'Raleway';
     }
@@ -45,7 +35,18 @@
       }
     }
   }
+}
 
+.salmon {
+  background: #ffc5ae;
+  border: 1px solid #ffc5ae;
+  color: #000;
+}
+
+.coral {
+  background: #ffc8c8;
+  border: 1px solid #ffc8c8;
+  color: #000;
 }
 
 .user {
