@@ -16,6 +16,8 @@ export class PrayerItemsContainerComponent implements OnInit, AfterViewInit {
   items: PrayerItem[] = [];
   loading = false;
   count = 0;
+  showDrag = true;
+  showDragCount = 0;
   grid: any;
   constructor(private itemService: PrayerItemsService, private utilities: UtilitiesService) { }
 
@@ -45,6 +47,12 @@ export class PrayerItemsContainerComponent implements OnInit, AfterViewInit {
     this.grid = $('.items-row').packery();
     this.grid.find('.item').each((i, gridItem) => {
       this.grid.packery('bindDraggabillyEvents', new Draggabilly(gridItem));
+    });
+    this.grid.on('dragItemPositioned', (item) => {
+      if (this.showDragCount === 1) {
+        this.showDrag = true;
+      }
+      this.showDragCount++;
     });
   }
 

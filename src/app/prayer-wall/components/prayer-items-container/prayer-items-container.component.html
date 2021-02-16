@@ -3,12 +3,16 @@
     <h5>Looks like there are no prayer requests at this moment, use the button above to create one</h5>
   </div>
 </div>
-<!-- <ngx-masonry class="row">
+<ngx-masonry class="row d-none d-sm-block d-md-none">
   <div ngxMasonryItem class="item col-lg-3 col-md-6 col-sm-12 mb-4" *ngFor="let item of items">
     <app-prayer-item-card [churchId]="churchId" [data]="item"></app-prayer-item-card>
   </div>
-</ngx-masonry> -->
-<div class="row items-row">
+</ngx-masonry>
+<div id="update" *ngIf="showDrag" class="d-sm-none alert alert-info alert-dismissible fade show" role="alert">
+  <strong>Note</strong>: Dragging is experimental and the positions currently won't be saved
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<div class="row items-row d-sm-none d-md-block">
   <div (drag)="checkPosition()" class="item col-lg-3 col-md-6 col-sm-12 mb-4" *ngFor="let item of items">
     <app-prayer-item-card [churchId]="churchId" [data]="item"></app-prayer-item-card>
   </div>
