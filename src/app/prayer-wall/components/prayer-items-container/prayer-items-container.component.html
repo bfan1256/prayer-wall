@@ -3,8 +3,13 @@
     <h5>Looks like there are no prayer requests at this moment, use the button above to create one</h5>
   </div>
 </div>
-<ngx-masonry class="row">
+<!-- <ngx-masonry class="row">
   <div ngxMasonryItem class="item col-lg-3 col-md-6 col-sm-12 mb-4" *ngFor="let item of items">
     <app-prayer-item-card [churchId]="churchId" [data]="item"></app-prayer-item-card>
   </div>
-</ngx-masonry>
+</ngx-masonry> -->
+<div class="row items-row">
+  <div (drag)="checkPosition()" class="item col-lg-3 col-md-6 col-sm-12 mb-4" *ngFor="let item of items">
+    <app-prayer-item-card [churchId]="churchId" [data]="item"></app-prayer-item-card>
+  </div>
+</div>

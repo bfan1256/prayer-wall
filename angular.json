@@ -34,6 +34,8 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/masonry.min.js",
+              "src/assets/js/packery.min.js",
+              "src/assets/js/dragabilly.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/bootstrap-tagsinput.min.js"
             ]
