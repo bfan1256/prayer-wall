@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" [class.salmon]="data.prayerType === 'request'" [class.coral]="data.prayerType === 'verse'">
   <div class="card-header pt-4 px-4">
     <div class="user">
       <img class="profile" *ngIf="data.type === 'public'" [src]="getImage(userData.profileUrl)" alt="">
