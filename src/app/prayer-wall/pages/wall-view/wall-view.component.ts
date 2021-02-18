@@ -28,6 +28,7 @@ export class WallViewComponent implements OnInit {
   justRemoved = false;
   members: any[] = [];
   profiles: string[] = [];
+  profileIds: string[] = [];
   constructor(private itemService: PrayerItemsService,
               private wall: WallService,
               private title: Title,
@@ -76,7 +77,10 @@ export class WallViewComponent implements OnInit {
         return this.getProfiles(profiles);
       })
     ).subscribe((res) => {
-      this.profiles.push(this.getProfileImage(res));
+      if (this.profileIds.indexOf(res.uid) === -1) {
+        this.profiles.push(this.getProfileImage(res.profileUrl));
+        this.profileIds.push(res.uid);
+      }
       console.log(this.profiles);
     });
 
@@ -110,8 +114,7 @@ export class WallViewComponent implements OnInit {
     return from(arr).pipe(
       mergeMap((id: string) => {
         return this.user.getUser(id);
-      }),
-      pluck('profileUrl')
+      })
     );
   }
 
