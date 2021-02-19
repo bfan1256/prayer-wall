@@ -17,7 +17,7 @@
     <h1 class="text-secondary">{{ wallData?.title }}</h1>
     <p>{{ wallData?.description }}</p>
     <div class="actions mt-4">
-      <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#newPrayerItemModal">Add to the prayer wall <i class="ms-2 fas fa-plus"></i></button>
+      <button class="btn btn-primary me-2 mb-3" data-bs-toggle="modal" data-bs-target="#newPrayerItemModal">Add to the prayer wall <i class="ms-2 fas fa-plus"></i></button>
       <button class="btn btn-outline-secondary" *ngIf="checkMembership()" (click)="addMember()">Follow for Updates 🙏 </button>
       <button class="btn btn-outline-danger" *ngIf="!checkMembership()" (click)="unfollow()">Unfollow this Prayer Wall</button>
     </div>
