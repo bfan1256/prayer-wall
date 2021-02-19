@@ -5,3 +5,29 @@
 .item {
   cursor: pointer;
 }
+
+
+.modal-body {
+  overflow-x: hidden;
+}
+
+.prayer-item-text {
+  font-size: 1.2rem;
+  white-space: pre-wrap;
+}
+
+.modal-content {
+  overflow-x: hidden;
+  background: white;
+}
+
+.responses {
+  margin: 0 -2em;
+  padding: 3.5em;
+  background:rgb(248, 248, 248);
+  .response-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

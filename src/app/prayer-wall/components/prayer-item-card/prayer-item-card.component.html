@@ -13,49 +13,8 @@
       <span class="badge rounded-pill bg-primary me-1">{{ capitalize(data.prayerType) }}</span>
       <span *ngFor="let tag of data.tags" class="badge rounded-pill bg-secondary me-1">{{ tag }}</span>
     </div>
-  </div>
-  <!-- <div class="card-footer p-3">
     <div class="new-profiles">
       <img class="profile" *ngFor="let profile of data.prayedIds.slice(1, 6)" src="https://source.unsplash.com/random" alt="">
-    </div>
-    <button [attr.data-bs-target]="'#responseModal' + data.prayerId" data-bs-toggle="modal" class="btn btn-outline-secondary">View Responses 🙏</button>
-  </div> -->
-</div>
-
-<div class="modal fade" [id]="'responseModal' + data.prayerId" tabindex="-1" aria-labelledby="responseModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Brandon's Prayer Request</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body pb-0">
-        <p class="prayer-item-text p-4 mt-3">{{ data.text }}</p>
-
-        <div class="responses mt-5">
-          <div class="response-top mb-3">
-            <h5>Prayer Responses</h5>
-            <button data-bs-toggle="collapse" href="#prayerResponse" role="button" class="btn btn-primary">Write a Response <i class="ms-2 fas fa-plus"></i></button>
-          </div>
-          <div class="collapse multi-collapse mb-5" id="prayerResponse">
-            <form action="">
-              <select [(ngModel)]="newResponse.type" name="share-preference" class="form-select mb-3" placeholder="Share Preference">
-                <option value="anonymous" selected>Share anonymously</option>
-              </select>
-              <div class="mb-3">
-                <label for="prayer-response-textarea" class="form-label">Your Prayer Response</label>
-                <textarea [(ngModel)]="newResponse.text" placeholder="Your awesome prayer response" name="response" class="form-control" id="prayer-response" rows="3"></textarea>
-              </div>
-              <button data-bs-toggle="collapse" (click)="addResponse()" href="#prayerResponse" type="submit" class="btn btn-primary mb-3">Submit Prayer Response</button>
-            </form>
-            <hr>
-          </div>
-          <app-response-card [data]="response" *ngFor="let response of responses"></app-response-card>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
     </div>
   </div>
 </div>

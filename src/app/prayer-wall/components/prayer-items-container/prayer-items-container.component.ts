@@ -1,8 +1,9 @@
 import { UtilitiesService } from './../../../shared/services/utilities/utilities.service';
 import { PrayerItemsService } from './../../../shared/services/prayer-items/prayer-items.service';
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
-import { PrayerItem } from 'src/app/shared/interfaces/prayer-item';
+import { PrayerItem, PrayerResponse } from 'src/app/shared/interfaces/prayer-item';
 import { delay, map, tap } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
 
 declare const $: any;
 declare const Draggabilly: any;
@@ -16,12 +17,17 @@ export class PrayerItemsContainerComponent implements OnInit, AfterViewInit {
   items: PrayerItem[] = [];
   loading = false;
   count = 0;
+  responses = [];
   showDrag = false;
+  currentSelected: PrayerItem;
+  newResponse: PrayerResponse;
   showDragCount = 0;
+  responseSubscription: Subscription;
   grid: any;
   constructor(private itemService: PrayerItemsService, private utilities: UtilitiesService) { }
 
   ngOnInit(): void {
+    this.newResponse = this.setDefaultPrayerResponse();
     this.itemService.getItemsById(this.churchId)
       .pipe(
         map((res) => {
@@ -63,6 +69,32 @@ export class PrayerItemsContainerComponent implements OnInit, AfterViewInit {
 
   checkPosition() {
     console.log('checking position...');
+  }
+
+  setDefaultPrayerResponse() {
+    return {
+      text: '',
+      type: 'anonymous',
+      responseId: '',
+      itemId: ''
+    };
+  }
+
+  openModal(data) {
+    this.currentSelected = data;
+    $('#responseModal').modal('show');
+    this.newResponse = this.setDefaultPrayerResponse();
+    if (this.responseSubscription) {
+      this.responseSubscription.unsubscribe();
+    }
+    this.responseSubscription = this.itemService.getResponses(this.churchId, this.currentSelected.prayerId).subscribe((res) => {
+      this.responses = res;
+    });
+  }
+
+  addResponse() {
+    this.newResponse.itemId = this.currentSelected.prayerId;
+    this.itemService.addResponse(this.churchId, this.currentSelected.prayerId, this.newResponse);
   }
 
 }
