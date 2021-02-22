@@ -18,8 +18,8 @@
     <p>{{ wallData?.description }}</p>
     <div class="actions mt-4">
       <button class="btn btn-primary me-2 mb-3" data-bs-toggle="modal" data-bs-target="#newPrayerItemModal">Add to the prayer wall <i class="ms-2 fas fa-plus"></i></button>
-      <button class="btn btn-outline-secondary" *ngIf="checkMembership()" (click)="addMember()">Follow for Updates 🙏 </button>
-      <button class="btn btn-outline-danger" *ngIf="!checkMembership()" (click)="unfollow()">Unfollow this Prayer Wall</button>
+      <button class="btn btn-outline-secondary mb-3" *ngIf="checkMembership()" (click)="addMember()">Follow for Updates 🙏 </button>
+      <button class="btn btn-outline-danger mb-3" *ngIf="!checkMembership()" (click)="unfollow()">Unfollow this Prayer Wall</button>
     </div>
     <div class="profiles">
       <img class="profile" [src]="profile" *ngFor="let profile of profiles" alt="">
